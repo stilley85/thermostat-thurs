@@ -6,25 +6,22 @@
     <script src="src/thermostat.js"></script>
   </head>
   <body>
+    <a href="http://jquery.com/">jQuery</a>
+    <script src= "js/jquery.js"> </script>
+    <script>
+    $( document ).ready(function() {
+      $( ":button" ).css("background-color", "lightgreen");
+      $( ":button" ).click(function( event ) {
+        alert( "Thanks for visiting!" );
+      });
+    });
+    </script>
     <h1>TEMP</h1>
-    <h1>USAGE</h1>
-    <form action="/?" method="?">
-      <div class="increase button">
-        <input type="submit" value="+">
-      </div>
-      <div class="decrease button">
-        <input type="submit" value="-">
-      </div>
-      <div class="reset button">
-        <input type="submit" value="reset">
-      </div>
-      <div class="psm on button">
-        <input type="submit" value="psmon">
-      </div>
-      <div class="psm off button">
-        <input type="submit" value="psmoff">
-      </div>
-    </form>
-
+    <h2>USAGE</h2>
+      <button id="increase">+</button>
+      <button id="decrease">-</button>
+      <button id="reset">reset</button>
+      <button id="psm on">psm on</button>
+      <button id="psm off">psm off</button>
   </body>
 </html>
