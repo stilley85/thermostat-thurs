@@ -10,6 +10,8 @@ var Thermostat = function(){
   const MAX_PSM_ON = 25;
   const MAX_PSM_OFF = 32;
   const DEFAULT_TEMP = 20;
+  const LOW_USAGE_LIMIT = 18;
+  const MEDIUM_USAGE_LIMIT = 25;
 
 Thermostat.prototype.getCurrentTemperature = function(){
   return this.temperature;
@@ -60,13 +62,13 @@ Thermostat.prototype.powerSavingModeOn = function(){
 };
 
 Thermostat.prototype.resetTemp = function(){
-  this.temperature = 20;
+  this.temperature = DEFAULT_TEMP;
 };
 
 Thermostat.prototype.currentEnergyUsage = function(){
-  if(this.temperature < 18){
+  if(this.temperature < LOW_USAGE_LIMIT){
     return 'low-usage';
-  } else if(this.temperature < 25){
+  } else if(this.temperature < MEDIUM_USAGE_LIMIT){
     return 'medium-usage'
   } else {
     return 'high-usage'
