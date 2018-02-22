@@ -1,13 +1,15 @@
 'use strict'
 
 var Thermostat = function(){
-  this.temperature = 20;
+  this.temperature = DEFAULT_TEMP;
   this.powerSavingMode = true;
+  this.energyUsage = this.currentEnergyUsage();
 };
 
   const MIN_TEMP = 10;
   const MAX_PSM_ON = 25;
   const MAX_PSM_OFF = 32;
+  const DEFAULT_TEMP = 20;
 
 Thermostat.prototype.getCurrentTemperature = function(){
   return this.temperature;
@@ -55,4 +57,18 @@ Thermostat.prototype.powerSavingModeOff = function(){
 
 Thermostat.prototype.powerSavingModeOn = function(){
   this.powerSavingMode = true;
+};
+
+Thermostat.prototype.resetTemp = function(){
+  this.temperature = 20;
+};
+
+Thermostat.prototype.currentEnergyUsage = function(){
+  if(this.temperature < 18){
+    return 'low-usage';
+  } else if(this.temperature < 25){
+    return 'medium-usage'
+  } else {
+    return 'high-usage'
+  }
 };

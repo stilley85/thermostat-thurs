@@ -68,7 +68,27 @@ describe('Thermostat', function(){
       }
       expect(function(){thermostat.up();}).toThrow(new Error("Already at max temperature"))
     });
-
   });
 
+  describe('reset', function(){
+    it('resets temperature to default', function(){
+      thermostat.up();
+      thermostat.resetTemp();
+      expect(thermostat.getCurrentTemperature()).toEqual(DEFAULT_TEMP);
+    });
+  });
+  describe('energy usage', function(){
+    it('returns low if tempertaure is below 18 degrees', function(){
+      thermostat.temperature = 17;
+      expect(thermostat.currentEnergyUsage()).toEqual('low-usage')
+    });
+    it('returns medium if temperature is less than 25', function(){
+      thermostat.temperature = 23;
+      expect(thermostat.currentEnergyUsage()).toEqual('medium-usage')
+    });
+    it('returns high if temperature is 25 or above', function(){
+      thermostat.temperature = 25;
+      expect(thermostat.currentEnergyUsage()).toEqual('high-usage')
+    });
+  });
 });
