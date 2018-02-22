@@ -3,7 +3,6 @@
 var Thermostat = function(){
   this.temperature = DEFAULT_TEMP;
   this.powerSavingMode = true;
-  this.energyUsage = this.currentEnergyUsage();
 };
 
   const MIN_TEMP = 10;
@@ -59,6 +58,9 @@ Thermostat.prototype.powerSavingModeOff = function(){
 
 Thermostat.prototype.powerSavingModeOn = function(){
   this.powerSavingMode = true;
+  if (this.getCurrentTemperature() > MAX_PSM_ON){
+    this.temperature = MAX_PSM_ON;
+  }
 };
 
 Thermostat.prototype.resetTemp = function(){

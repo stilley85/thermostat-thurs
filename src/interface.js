@@ -2,16 +2,44 @@ $( document ).ready(function() {
 
   var thermostat = new Thermostat();
 
-  $( "#temperature" ).text(thermostat.getCurrentTemperature());
+  function updateTemperature() {
+    $('#temperature').text(thermostat.getCurrentTemperature());
+  };
+
+  updateTemperature()
+
+  $('#usage').text(thermostat.currentEnergyUsage());
+
+  $('#psmoff').css('color', 'red');
+  $('#psmon').css('color', 'green');
+
 
   $( "#increase" ).on('click', function() {
     thermostat.up();
-    $( '#temperature').text(thermostat.getCurrentTemperature());
+    updateTemperature()
   });
 
   $( "#decrease" ).on('click', function() {
     thermostat.down();
-    $( '#temperature').text(thermostat.getCurrentTemperature());
+    updateTemperature()
+  });
+
+  $( "#reset" ).on('click', function() {
+    thermostat.resetTemp();
+    updateTemperature()
+  });
+
+  $( "#psmon" ).on('click', function() {
+    thermostat.powerSavingModeOn();
+    updateTemperature()
+    $(this).css('color', 'green');
+    $('#psmoff').css('color', 'red');
+  });
+
+  $( "#psmoff" ).on('click', function() {
+    thermostat.powerSavingModeOff();
+    $(this).css('color', 'green');
+    $('#psmon').css('color', 'red');
   });
 
 });
