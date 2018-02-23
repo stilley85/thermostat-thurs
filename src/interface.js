@@ -6,9 +6,13 @@ $( document ).ready(function() {
     $('#temperature').text(thermostat.getCurrentTemperature());
   };
 
-  updateTemperature()
+  function showUsage() {
+    $('#usage').text(thermostat.currentEnergyUsage());
+  };
 
-  $('#usage').text(thermostat.currentEnergyUsage());
+  updateTemperature();
+  showUsage();
+
 
   $('#psmoff').css('color', 'red');
   $('#psmon').css('color', 'green');
@@ -16,22 +20,26 @@ $( document ).ready(function() {
 
   $( "#increase" ).on('click', function() {
     thermostat.up();
-    updateTemperature()
+    updateTemperature();
+    showUsage();
   });
 
   $( "#decrease" ).on('click', function() {
     thermostat.down();
-    updateTemperature()
+    updateTemperature();
+    showUsage();
   });
 
   $( "#reset" ).on('click', function() {
     thermostat.resetTemp();
-    updateTemperature()
+    updateTemperature();
+    showUsage();
   });
 
   $( "#psmon" ).on('click', function() {
     thermostat.powerSavingModeOn();
     updateTemperature()
+    showUsage();
     $(this).css('color', 'green');
     $('#psmoff').css('color', 'red');
   });
